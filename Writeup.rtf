@@ -1,0 +1,49 @@
+
+Words and Pictures Homework 2
+Submitted by:
+	108771077: Sagardeep Mahapatra
+	108800494: Biswaranjan Panda
+
+
+PART 1: MINING IMAGE LABELS FROM DESCRIPTIONS
+
+In this part, we take a cell array of the attributes (black,brown,red,gold,silver). We then iterate on all the text files associated with the images and see whether there is exactly one attribute present in the description. Following points have been taken into account while performing the above:
+
+a) We have removed the punctuation symbols from the text as that might result in an attribute not being found.
+b) While searching for the attributes, we have considered the strcmpi matlab function in order to do a case insensitive search.
+
+Result of this step: 
+All the images which have exactly one attribute mentioned in their text form the training set and are stored in the 'training_set' cell array. The 'label' cell array stores the corresponding attribute values.
+Rest all images form our testing set and are stored in the testing_set cell array.
+
+
+PART B: COMPUTING IMAGE DESCRIPTORS 
+
+In this part, we compute the hue-saturation-value color histogram for each image in the training set and the testing set. We have resized the image to 32x32 before computing the hue-saturation-value for that image. Following points have been taken care of while computing the histogram:
+
+a) 10 bins have been considered for each of the color dimensions (hue,saturation,value). Thus each pixel can fall only into any one of the 1000 bins (linear representation of 10x10x10 matrix).
+b) We have then normalized our histogram for better results.
+c) We have put an additional check for NOT considering the gray scale images in the above computation.
+
+The above steps have been performed both for the training set and the testing set.
+
+
+PART C: TRAINING CLASSIFIERS
+
+The training set was then divided into training (first 70%) and tuning (last 30%) sets for training the classifiers. The SVM functions were then used to train the classifiers by using them on the tuning set. Note: This was performed separately for all the attributes and the best C and g values were determined for each attribute. Following were the C and g values obtained that had the highest accuray of prediction.
+
+Black	: C=700 g=0.01
+Brown	: C=990 g=0.01
+Red	: C=800 g=400
+Gold	: C=900 g=0.01
+Silver: C=800 g=600
+
+
+PART D: CLASSIFYING/RETRIEVING IMAGES WITHOUT ATTRIBUTE ANNOTATIONS
+
+The C and g values obtained in the previous steps were then used to determine the labels for the testing set and the top 200 results for each attribute have been put on the webpage.
+
+Please refer to the readme file for details on the steps to run the code and view the results.
+ 
+
+
